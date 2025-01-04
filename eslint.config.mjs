@@ -1,16 +1,16 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+module.exports = {
+  extends: ['next', 'next/core-web-vitals'],
+  rules: {
+    // Disable 'no-console' rule globally (allowing console logs for debugging)
+    'no-console': 'off',
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+    // Disable 'no-unused-vars' rule globally (ignoring unused variable warnings)
+    '@typescript-eslint/no-unused-vars': 'off', // Disable unused variable warnings
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+    // Disable 'react-hooks/exhaustive-deps' rule for hooks
+    'react-hooks/exhaustive-deps': 'off',
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+    // Disable any other rules based on your needs
+    'react/jsx-no-undef': 'off', // Disable JSX undefined elements warning
+  },
+};

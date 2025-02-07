@@ -1,6 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+type Question = {
+  question: string;
+  options: string[];
+  correct: string;
+};
 
 const Chatbot = () => {
   const [userName, setUserName] = useState('');
@@ -11,29 +17,222 @@ const Chatbot = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const questions = [
-    { question: 'What is the primary benefit of using Next.js over traditional React?', options: ['Server-Side Rendering', 'Client-Side Rendering', 'Static Site Generation', 'All of the above'], correct: 'All of the above' },
-    { question: 'What does Tailwind CSS use to style elements?', options: ['Predefined Classes', 'Inline Styles', 'JavaScript', 'None of the above'], correct: 'Predefined Classes' },
-    { question: 'What is the command to create a new Next.js app?', options: ['npx create-next-app', 'npm create-next-app', 'create-next-app', 'next create app'], correct: 'npx create-next-app' },
-    { question: 'Which hook is used for fetching data in Next.js?', options: ['useEffect', 'useState', 'getServerSideProps', 'getStaticProps'], correct: 'getServerSideProps' },
-    { question: 'What is the file extension for a Next.js page?', options: ['.jsx', '.ts', '.tsx', '.page.js'], correct: '.tsx' },
-    { question: 'How can you add a custom font in Tailwind CSS?', options: ['@import in CSS', 'In the tailwind.config.js file', 'FontAwesome package', 'None of the above'], correct: 'In the tailwind.config.js file' },
-    { question: 'Which of these is true about Next.js Image optimization?', options: ['Next.js optimizes images automatically on demand', 'You must optimize images manually', 'Next.js doesn\'t support image optimization', 'None of the above'], correct: 'Next.js optimizes images automatically on demand' },
-    { question: 'Which command is used to run a Next.js development server?', options: ['npm start', 'npm run dev', 'next dev', 'run dev'], correct: 'npm run dev' },
-    { question: 'What is the default folder for static assets in Next.js?', options: ['public', 'static', 'assets', 'dist'], correct: 'public' },
-    { question: 'How do you enable PurgeCSS in Tailwind?', options: ['@tailwind purge', 'Add purge option in tailwind.config.js', 'Use the tailwind purge command', 'None of the above'], correct: 'Add purge option in tailwind.config.js' },
-    { question: 'What is the purpose of Next.js API routes?', options: ['To handle backend logic within a Next.js app', 'To provide authentication', 'To create middleware', 'None of the above'], correct: 'To handle backend logic within a Next.js app' },
-    { question: 'How do you pass dynamic data to a page in Next.js?', options: ['With props', 'Using state', 'With query parameters', 'Through context'], correct: 'With props' },
-    { question: 'Which of these is the correct way to handle routing in Next.js?', options: ['Using React Router', 'Using Next.js Link component', 'Using window.location', 'None of the above'], correct: 'Using Next.js Link component' },
-    { question: 'How does Next.js handle static site generation?', options: ['By generating static HTML at build time', 'By generating static HTML on the fly', 'By using pre-generated data only', 'None of the above'], correct: 'By generating static HTML at build time' },
-    { question: 'What does `next/image` optimize?', options: ['Images for performance and responsiveness', 'Only images for SEO', 'Static assets', 'Server-side assets'], correct: 'Images for performance and responsiveness' },
-    { question: 'How can you style Next.js pages using Tailwind CSS?', options: ['By importing Tailwind classes in a global CSS file', 'By applying Tailwind classes directly in JSX', 'By using Tailwind classes in JavaScript', 'None of the above'], correct: 'By applying Tailwind classes directly in JSX' },
-    { question: 'What is the command to create a new Tailwind project?', options: ['tailwind init', 'npx tailwind init', 'npm create tailwind', 'create-tailwind-project'], correct: 'npx tailwind init' },
-    { question: 'How do you add responsive styles in Tailwind CSS?', options: ['By using `responsive` classes', 'By using `@media` queries', 'By using `sm`, `md`, `lg` classes', 'None of the above'], correct: 'By using `sm`, `md`, `lg` classes' },
-    { question: 'How do you use Tailwind’s JIT mode?', options: ['By default', 'By configuring it in the tailwind.config.js file', 'By installing the JIT plugin', 'None of the above'], correct: 'By configuring it in the tailwind.config.js file' },
-    { question: 'What command is used to run a Next.js production build?', options: ['next build', 'npm run build', 'next production', 'npm build'], correct: 'next build' },
+  // Local question bank
+  const questions: Question[] = [
+    {
+      question: 'What is the primary purpose of React Server Components in Next.js 15?',
+      options: [
+        'To enable server-side rendering',
+        'To reduce client-side JavaScript',
+        'To improve SEO',
+        'To simplify API routing',
+      ],
+      correct: 'To reduce client-side JavaScript',
+    },
+    {
+      question: 'Which of the following is a new feature in Next.js 15?',
+      options: [
+        'Automatic Image Optimization',
+        'Middleware API',
+        'Static Site Generation',
+        'Incremental Static Regeneration',
+      ],
+      correct: 'Middleware API',
+    },
+    {
+      question: 'How does Next.js 15 handle caching by default?',
+      options: [
+        'No caching',
+        'Cache everything',
+        'Cache based on headers',
+        'Cache only API routes',
+      ],
+      correct: 'Cache based on headers',
+    },
+    {
+      question: 'What is the purpose of the `use client` directive in Next.js 15?',
+      options: [
+        'To mark a component as client-side only',
+        'To enable server-side rendering',
+        'To optimize static generation',
+        'To define API routes',
+      ],
+      correct: 'To mark a component as client-side only',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 middleware?',
+      options: [
+        'It runs on the client-side only',
+        'It can modify request and response headers',
+        'It is used for static site generation',
+        'It replaces API routes',
+      ],
+      correct: 'It can modify request and response headers',
+    },
+    {
+      question: 'What is the purpose of `generateStaticParams` in Next.js 15?',
+      options: [
+        'To generate static pages at build time',
+        'To define dynamic API routes',
+        'To optimize client-side rendering',
+        'To handle server-side errors',
+      ],
+      correct: 'To generate static pages at build time',
+    },
+    {
+      question: 'How does Next.js 15 handle dynamic routes with `fallback: true`?',
+      options: [
+        'It generates all pages at build time',
+        'It generates pages on-demand',
+        'It returns a 404 for unknown routes',
+        'It disables dynamic routing',
+      ],
+      correct: 'It generates pages on-demand',
+    },
+    {
+      question: 'What is the purpose of `next/font` in Next.js 15?',
+      options: [
+        'To optimize image loading',
+        'To enable custom fonts with automatic optimization',
+        'To handle API requests',
+        'To generate static pages',
+      ],
+      correct: 'To enable custom fonts with automatic optimization',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 API routes?',
+      options: [
+        'They can only be used for GET requests',
+        'They run on the client-side',
+        'They can be used to create backend logic',
+        'They are deprecated in Next.js 15',
+      ],
+      correct: 'They can be used to create backend logic',
+    },
+    {
+      question: 'What is the purpose of `next/image` in Next.js 15?',
+      options: [
+        'To optimize image loading and performance',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To optimize image loading and performance',
+    },
+    {
+      question: 'What is the purpose of `next/script` in Next.js 15?',
+      options: [
+        'To optimize third-party scripts',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To optimize third-party scripts',
+    },
+    {
+      question: 'Which of the following is true about Incremental Static Regeneration (ISR) in Next.js 15?',
+      options: [
+        'It regenerates static pages on every request',
+        'It regenerates static pages at build time only',
+        'It regenerates static pages on-demand after build',
+        'It is deprecated in Next.js 15',
+      ],
+      correct: 'It regenerates static pages on-demand after build',
+    },
+    {
+      question: 'What is the purpose of `next/head` in Next.js 15?',
+      options: [
+        'To optimize image loading',
+        'To manage the document head (e.g., title, meta tags)',
+        'To handle API requests',
+        'To generate static pages',
+      ],
+      correct: 'To manage the document head (e.g., title, meta tags)',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and TypeScript?',
+      options: [
+        'TypeScript is not supported in Next.js 15',
+        'TypeScript is supported out of the box',
+        'TypeScript requires additional configuration',
+        'TypeScript is deprecated in Next.js 15',
+      ],
+      correct: 'TypeScript is supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/dynamic` in Next.js 15?',
+      options: [
+        'To enable dynamic imports',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable dynamic imports',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and CSS Modules?',
+      options: [
+        'CSS Modules are not supported',
+        'CSS Modules are supported out of the box',
+        'CSS Modules require additional configuration',
+        'CSS Modules are deprecated in Next.js 15',
+      ],
+      correct: 'CSS Modules are supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/link` in Next.js 15?',
+      options: [
+        'To handle API requests',
+        'To enable client-side navigation',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable client-side navigation',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and error handling?',
+      options: [
+        'Errors are not handled by default',
+        'Errors are handled using `getStaticProps`',
+        'Errors are handled using `getServerSideProps`',
+        'Errors are handled using `ErrorBoundary`',
+      ],
+      correct: 'Errors are handled using `ErrorBoundary`',
+    },
+    {
+      question: 'What is the purpose of `next/config` in Next.js 15?',
+      options: [
+        'To manage runtime configuration',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To manage runtime configuration',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and internationalization (i18n)?',
+      options: [
+        'i18n is not supported',
+        'i18n is supported out of the box',
+        'i18n requires additional configuration',
+        'i18n is deprecated in Next.js 15',
+      ],
+      correct: 'i18n is supported out of the box',
+    },
+    // Add 30 more advanced questions here...
   ];
+
+  useEffect(() => {
+    if (quizStarted) {
+      // Shuffle questions locally
+      const shuffled = [...questions].sort(() => Math.random() - 0.5);
+      setShuffledQuestions(shuffled);
+    }
+  }, [quizStarted]);
 
   const handleSubmitDetails = () => {
     if (userName && rollNumber && contactNumber) {
@@ -42,21 +241,20 @@ const Chatbot = () => {
   };
 
   const handleAnswerClick = (answer: string) => {
-    const correctAnswer = questions[currentQuestionIndex].correct;
+    const correctAnswer = shuffledQuestions[currentQuestionIndex].correct;
     setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
     if (answer === correctAnswer) {
       setScore((prevScore) => prevScore + 1);
     }
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      setQuizCompleted(true); 
+      setQuizCompleted(true);
     }
   };
 
-
-  const percentage = quizCompleted ? ((score / questions.length) * 100).toFixed(2) : null;
+  const percentage = quizCompleted ? ((score / shuffledQuestions.length) * 100).toFixed(2) : null;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -91,19 +289,34 @@ const Chatbot = () => {
             Start Quiz
           </button>
         </div>
+      ) : loading ? (
+        <div className="text-xl text-gray-800">Loading questions...</div>
+      ) : error ? (
+        <div className="text-xl text-red-600">{error}</div>
       ) : quizCompleted ? (
         <div className="max-w-lg w-full bg-white p-8 rounded-lg shadow-xl border border-gray-200">
           <h2 className="text-3xl font-bold text-center text-green-600 mb-6">Quiz Completed!</h2>
-          <p className="text-xl text-gray-800 mb-4">Your Score: {score} / {questions.length}</p>
+          <p className="text-xl text-gray-800 mb-4">Your Score: {score} / {shuffledQuestions.length}</p>
           <p className="text-xl text-gray-800 mb-4">Percentage: {percentage}%</p>
-          <p className="text-lg text-gray-600">Thank you for taking the quiz!</p>
+          <div className="space-y-4">
+            {shuffledQuestions.map((question, index) => (
+              <div key={index} className="p-4 border border-gray-200 rounded-lg">
+                <p className="text-lg font-semibold text-gray-800">{question.question}</p>
+                <p className={`text-lg ${userAnswers[index] === question.correct ? 'text-green-600' : 'text-red-600'}`}>
+                  Your Answer: {userAnswers[index]}
+                </p>
+                <p className="text-lg text-gray-600">Correct Answer: {question.correct}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-lg text-gray-600 mt-6">Thank you for taking the quiz!</p>
         </div>
       ) : (
         <div className="max-w-lg w-full bg-white p-8 rounded-lg shadow-xl border border-gray-200">
           <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Question {currentQuestionIndex + 1}</h2>
-          <p className="text-xl text-gray-700 mb-6">{questions[currentQuestionIndex]?.question}</p>
+          <p className="text-xl text-gray-700 mb-6">{shuffledQuestions[currentQuestionIndex]?.question}</p>
           <div className="space-y-4">
-            {questions[currentQuestionIndex]?.options.map((option, idx) => (
+            {shuffledQuestions[currentQuestionIndex]?.options.map((option, idx) => (
               <button
                 key={idx}
                 className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"

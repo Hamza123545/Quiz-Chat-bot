@@ -223,9 +223,309 @@ const Chatbot = () => {
       ],
       correct: 'i18n is supported out of the box',
     },
-    // Add 30 more advanced questions here...
+    {
+      question: 'What is the purpose of `getStaticProps` in Next.js 15?',
+      options: [
+        'To fetch data at build time',
+        'To fetch data on the client-side',
+        'To handle API requests',
+        'To manage runtime configuration',
+      ],
+      correct: 'To fetch data at build time',
+    },
+    {
+      question: 'What is the purpose of `getServerSideProps` in Next.js 15?',
+      options: [
+        'To fetch data at build time',
+        'To fetch data on each request',
+        'To handle API requests',
+        'To manage runtime configuration',
+      ],
+      correct: 'To fetch data on each request',
+    },
+    {
+      question: 'How can you optimize performance in Next.js 15 using `next/image`?',
+      options: [
+        'By lazy loading images',
+        'By using external image URLs',
+        'By disabling image optimization',
+        'By using inline images',
+      ],
+      correct: 'By lazy loading images',
+    },
+    {
+      question: 'What is the purpose of `next/error` in Next.js 15?',
+      options: [
+        'To handle API errors',
+        'To display custom error pages',
+        'To manage runtime configuration',
+        'To optimize static generation',
+      ],
+      correct: 'To display custom error pages',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and WebAssembly (Wasm)?',
+      options: [
+        'Wasm is not supported',
+        'Wasm is supported out of the box',
+        'Wasm requires additional configuration',
+        'Wasm is deprecated in Next.js 15',
+      ],
+      correct: 'Wasm is supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/amp` in Next.js 15?',
+      options: [
+        'To enable AMP (Accelerated Mobile Pages)',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable AMP (Accelerated Mobile Pages)',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and GraphQL?',
+      options: [
+        'GraphQL is not supported',
+        'GraphQL is supported out of the box',
+        'GraphQL requires additional configuration',
+        'GraphQL is deprecated in Next.js 15',
+      ],
+      correct: 'GraphQL requires additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/analytics` in Next.js 15?',
+      options: [
+        'To track user interactions',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To track user interactions',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and WebSockets?',
+      options: [
+        'WebSockets are not supported',
+        'WebSockets are supported out of the box',
+        'WebSockets require additional configuration',
+        'WebSockets are deprecated in Next.js 15',
+      ],
+      correct: 'WebSockets require additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/plugins` in Next.js 15?',
+      options: [
+        'To extend Next.js functionality',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To extend Next.js functionality',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Serverless Functions?',
+      options: [
+        'Serverless Functions are not supported',
+        'Serverless Functions are supported out of the box',
+        'Serverless Functions require additional configuration',
+        'Serverless Functions are deprecated in Next.js 15',
+      ],
+      correct: 'Serverless Functions are supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/compat` in Next.js 15?',
+      options: [
+        'To ensure backward compatibility',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To ensure backward compatibility',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and CSS-in-JS?',
+      options: [
+        'CSS-in-JS is not supported',
+        'CSS-in-JS is supported out of the box',
+        'CSS-in-JS requires additional configuration',
+        'CSS-in-JS is deprecated in Next.js 15',
+      ],
+      correct: 'CSS-in-JS is supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/experimental` in Next.js 15?',
+      options: [
+        'To enable experimental features',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable experimental features',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Edge Functions?',
+      options: [
+        'Edge Functions are not supported',
+        'Edge Functions are supported out of the box',
+        'Edge Functions require additional configuration',
+        'Edge Functions are deprecated in Next.js 15',
+      ],
+      correct: 'Edge Functions are supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/constants` in Next.js 15?',
+      options: [
+        'To define global constants',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To define global constants',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Progressive Web Apps (PWA)?',
+      options: [
+        'PWA is not supported',
+        'PWA is supported out of the box',
+        'PWA requires additional configuration',
+        'PWA is deprecated in Next.js 15',
+      ],
+      correct: 'PWA requires additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/middleware` in Next.js 15?',
+      options: [
+        'To handle middleware logic',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To handle middleware logic',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Web Workers?',
+      options: [
+        'Web Workers are not supported',
+        'Web Workers are supported out of the box',
+        'Web Workers require additional configuration',
+        'Web Workers are deprecated in Next.js 15',
+      ],
+      correct: 'Web Workers require additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/optimizations` in Next.js 15?',
+      options: [
+        'To enable performance optimizations',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable performance optimizations',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Web Components?',
+      options: [
+        'Web Components are not supported',
+        'Web Components are supported out of the box',
+        'Web Components require additional configuration',
+        'Web Components are deprecated in Next.js 15',
+      ],
+      correct: 'Web Components require additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/polyfills` in Next.js 15?',
+      options: [
+        'To provide polyfills for older browsers',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To provide polyfills for older browsers',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Web Vitals?',
+      options: [
+        'Web Vitals are not supported',
+        'Web Vitals are supported out of the box',
+        'Web Vitals require additional configuration',
+        'Web Vitals are deprecated in Next.js 15',
+      ],
+      correct: 'Web Vitals are supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/security` in Next.js 15?',
+      options: [
+        'To enhance security features',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enhance security features',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and WebAssembly (Wasm)?',
+      options: [
+        'Wasm is not supported',
+        'Wasm is supported out of the box',
+        'Wasm requires additional configuration',
+        'Wasm is deprecated in Next.js 15',
+      ],
+      correct: 'Wasm is supported out of the box',
+    },
+    {
+      question: 'What is the purpose of `next/testing` in Next.js 15?',
+      options: [
+        'To enable testing utilities',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable testing utilities',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and WebSockets?',
+      options: [
+        'WebSockets are not supported',
+        'WebSockets are supported out of the box',
+        'WebSockets require additional configuration',
+        'WebSockets are deprecated in Next.js 15',
+      ],
+      correct: 'WebSockets require additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/utilities` in Next.js 15?',
+      options: [
+        'To provide utility functions',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To provide utility functions',
+    },
+    {
+      question: 'Which of the following is true about Next.js 15 and Web Workers?',
+      options: [
+        'Web Workers are not supported',
+        'Web Workers are supported out of the box',
+        'Web Workers require additional configuration',
+        'Web Workers are deprecated in Next.js 15',
+      ],
+      correct: 'Web Workers require additional configuration',
+    },
+    {
+      question: 'What is the purpose of `next/optimizations` in Next.js 15?',
+      options: [
+        'To enable performance optimizations',
+        'To handle API requests',
+        'To generate static pages',
+        'To enable server-side rendering',
+      ],
+      correct: 'To enable performance optimizations',
+    },
   ];
 
+  
   useEffect(() => {
     if (quizStarted) {
       // Shuffle questions locally
@@ -257,69 +557,86 @@ const Chatbot = () => {
   const percentage = quizCompleted ? ((score / shuffledQuestions.length) * 100).toFixed(2) : null;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
       {!quizStarted ? (
-        <div className="max-w-lg w-full bg-white p-8 rounded-lg shadow-xl border border-gray-200">
-          <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">Enter Your Details</h2>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            className="w-full p-3 mb-4 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter your Roll Number"
-            className="w-full p-3 mb-4 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-            value={rollNumber}
-            onChange={(e) => setRollNumber(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter your Contact Number"
-            className="w-full p-3 mb-4 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-            value={contactNumber}
-            onChange={(e) => setContactNumber(e.target.value)}
-          />
-          <button
-            onClick={handleSubmitDetails}
-            className="w-full py-3 bg-blue-600 text-white text-lg rounded-lg hover:bg-blue-700 transition duration-300"
-          >
-            Start Quiz
-          </button>
+        <div className="max-w-lg w-full bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+          <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">Enter Your Details</h2>
+          <div className="space-y-6">
+            <input
+              type="text"
+              placeholder="Enter your name"
+              className="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Enter your Roll Number"
+              className="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200"
+              value={rollNumber}
+              onChange={(e) => setRollNumber(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Enter your Contact Number"
+              className="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-200"
+              value={contactNumber}
+              onChange={(e) => setContactNumber(e.target.value)}
+            />
+            <button
+              onClick={handleSubmitDetails}
+              className="w-full py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-300 transform hover:scale-105 active:scale-95"
+            >
+              Start Quiz
+            </button>
+          </div>
         </div>
       ) : loading ? (
         <div className="text-xl text-gray-800">Loading questions...</div>
       ) : error ? (
         <div className="text-xl text-red-600">{error}</div>
       ) : quizCompleted ? (
-        <div className="max-w-lg w-full bg-white p-8 rounded-lg shadow-xl border border-gray-200">
-          <h2 className="text-3xl font-bold text-center text-green-600 mb-6">Quiz Completed!</h2>
-          <p className="text-xl text-gray-800 mb-4">Your Score: {score} / {shuffledQuestions.length}</p>
-          <p className="text-xl text-gray-800 mb-4">Percentage: {percentage}%</p>
-          <div className="space-y-4">
+        <div className="max-w-lg w-full bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Quiz Completed!</h2>
+          <div className="text-center space-y-4">
+            <p className="text-xl text-gray-800">
+              Your Score: <span className="font-bold">{score}</span> / {shuffledQuestions.length}
+            </p>
+            <p className="text-xl text-gray-800">
+              Percentage: <span className="font-bold">{percentage}%</span>
+            </p>
+          </div>
+          <div className="mt-8 space-y-6">
             {shuffledQuestions.map((question, index) => (
-              <div key={index} className="p-4 border border-gray-200 rounded-lg">
-                <p className="text-lg font-semibold text-gray-800">{question.question}</p>
-                <p className={`text-lg ${userAnswers[index] === question.correct ? 'text-green-600' : 'text-red-600'}`}>
+              <div
+                key={index}
+                className="p-6 border border-gray-200 rounded-lg bg-gray-50 hover:bg-gray-100 transition duration-200"
+              >
+                <p className="text-lg font-semibold text-gray-800 mb-4">{question.question}</p>
+                <p
+                  className={`text-lg ${
+                    userAnswers[index] === question.correct ? 'text-green-600' : 'text-red-600'
+                  }`}
+                >
                   Your Answer: {userAnswers[index]}
                 </p>
                 <p className="text-lg text-gray-600">Correct Answer: {question.correct}</p>
               </div>
             ))}
           </div>
-          <p className="text-lg text-gray-600 mt-6">Thank you for taking the quiz!</p>
+          <p className="text-lg text-gray-600 mt-8 text-center">Thank you for taking the quiz!</p>
         </div>
       ) : (
-        <div className="max-w-lg w-full bg-white p-8 rounded-lg shadow-xl border border-gray-200">
-          <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Question {currentQuestionIndex + 1}</h2>
-          <p className="text-xl text-gray-700 mb-6">{shuffledQuestions[currentQuestionIndex]?.question}</p>
+        <div className="max-w-lg w-full bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+            Question {currentQuestionIndex + 1}
+          </h2>
+          <p className="text-xl text-gray-700 mb-8">{shuffledQuestions[currentQuestionIndex]?.question}</p>
           <div className="space-y-4">
             {shuffledQuestions[currentQuestionIndex]?.options.map((option, idx) => (
               <button
                 key={idx}
-                className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className="w-full py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 active:bg-blue-800 transition duration-300 transform hover:scale-105 active:scale-95"
                 onClick={() => handleAnswerClick(option)}
               >
                 {option}
